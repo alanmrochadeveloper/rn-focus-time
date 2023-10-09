@@ -1,4 +1,4 @@
-import {Platform, SafeAreaView, StatusBar, StyleSheet, View} from "react-native";
+import {Platform, SafeAreaView, StatusBar, StyleSheet, Text, View} from "react-native";
 import {ThemeButton} from "./ThemeButton";
 import {ThemeContext} from "../context/theme";
 import ExpoStatusBar from "expo-status-bar/build/ExpoStatusBar";
