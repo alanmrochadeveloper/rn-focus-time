@@ -1,16 +1,28 @@
-export const themeValue = "dark";
+const white = "#f3fefe";
+const black = "#0e0e0e";
 export const theme = {
+    inputBg: "#fefefe",
     dark: {
-        white: "#fefefe",
-        text: "#fefefe",
-        backgroundColor: "indigo",
-        border: "#fefefe"
+        white: white,
+        text: white,
+        backgroundColor: "tomato",
+        border: white,
+        expoStatusBar: "light",
+        iconButton: {
+            backgroundColor: white,
+            border: white
+        }
     },
     light: {
-        white: "#fefefe",
-        black: "#0e0e0e",
-        text: "#0e0e0e",
-        backgroundColor: "#623fee33",
-        border: "#0e0e0e"
+        white: white,
+        black: black,
+        text: black,
+        backgroundColor: white,
+        border: black,
+        expoStatusBar: "transparent",
+        iconButton: {
+            backgroundColor: white,
+            border: white
+        }
     }
 }

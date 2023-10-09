@@ -1,25 +1,47 @@
 import {StyleSheet, View} from "react-native";
-import { TextInput } from "react-native-paper"
-import {theme, themeValue} from "../themes";
+import {TextInput} from "react-native-paper"
+import {theme} from "../themes";
 import {RoundedButton} from "../components/RoundedButton";
+import {useContext, useState} from "react";
+import {ThemeContext} from "../context/theme";
 
-export const Focus = () => {
-    return <View style={styles.container}>
-        <View style={styles.inputContainer}>
-            <TextInput label={"What would you like to focus on?"} />
-            <RoundedButton title={"+"}/>
+export const Focus = ({addSubject}) => {
+
+    const [subject, setSubject] = useState("")
+    const {themeValue} = useContext(ThemeContext);
+
+    return <View style={styles(themeValue).container}>
+        <View style={styles(themeValue).inputContainer}>
+            <TextInput
+                label={"What would you like to focus on?"}
+                style={styles(themeValue).textInput}
+                value={subject}
+                textColor={"black"}
+                theme={{colors: {text: "purple", error: "blue"}}}
+                onChangeText={setSubject}
+            />
+            <View style={styles(themeValue).button}>
+                <RoundedButton title={"+"} size={50} onPress={() => addSubject(subject)}/>
+            </View>
         </View>
     </View>
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create((themeValue = "dark") => ({
     container: {
         flex: 1,
         backgroundColor: theme[themeValue].backgroundColor,
     },
-    inputContainer: {
-      flex: 0.5,
-      padding: 25,
-      justifyContent: "top"
+    button: {
+        justifyContent: "center"
     },
-})
+    textInput: {
+        marginRight: 10,
+        backgroundColor: theme.inputBg
+    },
+    inputContainer: {
+        padding: 25,
+        justifyContent: "center",
+        flexDirection: "row"
+    },
+}))

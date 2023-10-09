@@ -1,6 +1,7 @@
-import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
-import {theme, themeValue} from "../themes";
+import React, {useContext} from 'react';
+import {Text, TouchableOpacity} from 'react-native';
+import {theme} from "../themes";
+import {ThemeContext} from "../context/theme";
 
 export const RoundedButton = ({
                                   style = {},
@@ -8,14 +9,15 @@ export const RoundedButton = ({
                                   size = 125,
                                   ...props
                               }) => {
+    const {themeValue} = useContext(ThemeContext)
     return (
-        <TouchableOpacity style={[styles(size).radius, style]} onPress={props.onPress}>
-            <Text style={[styles(size).text, textStyle]}>{props.title}</Text>
+        <TouchableOpacity style={[styles(size, themeValue).radius, style]} onPress={props.onPress}>
+            <Text style={[styles(size, themeValue).text, textStyle]}>{props.title}</Text>
         </TouchableOpacity>
     );
 };
 
-const styles = (size) => ({
+const styles = (size, themeValue) => ({
     radius: {
         borderRadius: size / 2,
         width: size,
@@ -25,5 +27,5 @@ const styles = (size) => ({
         borderColor: theme[themeValue].border,
         borderWidth: 2
     },
-    text: { color: theme[themeValue].text, fontSize: size / 3 },
+    text: {color: theme[themeValue].text, fontSize: size / 3},
 });
