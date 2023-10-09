@@ -1,10 +1,10 @@
-import {Theme} from "./src/context/theme";
-import {MainApp} from "./src/components/MainApp";
+import { MainApp } from './src/components/MainApp'
+import { Theme } from './src/context/theme'
 
 
 export default function App() {
     return (<Theme>
-        <MainApp/>
+        <MainApp />
     </Theme>)
 }
 
