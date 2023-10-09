@@ -9,7 +9,7 @@ import {theme} from "../themes";
 export const MainApp = () => {
 
     const [currentSubject, setCurrentSubject] = useState(null)
-    const {themeValue, setTheme} = useContext(ThemeContext);
+    const {themeValue} = useContext(ThemeContext);
 
     return <SafeAreaView style={styles(themeValue).container}>
         <ThemeButton/>
@@ -25,7 +25,7 @@ export const MainApp = () => {
 const styles = StyleSheet.create((themeValue = "light") => ({
     container: {
         flex: 1,
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 20 : 0,
         backgroundColor: theme[themeValue].backgroundColor,
     }, text: {
         color: theme[themeValue].text

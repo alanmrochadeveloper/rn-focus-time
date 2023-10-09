@@ -1,4 +1,4 @@
-import {StyleSheet, View} from "react-native";
+import {Platform, StyleSheet, View} from "react-native";
 import React, {useContext} from "react";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {ThemeContext} from "../context/theme";
@@ -13,8 +13,6 @@ export const ThemeButton = () => {
               size={30}
               theme={"light"}
               color={theme[themeValue].text}
-              allowFontScaling
-            // icon={themeValue === "light" ? "moon-waning-crescent" : "white-balance-sunny"}
               onPress={() => setTheme(prev => prev === "dark" ? "light" : "dark")}
         />
     </View>)
@@ -25,5 +23,6 @@ const styles = StyleSheet.create((themeValue = "dark") => ({
         justifyContent: "center",
         flexDirection: "row",
         backgroundColor: theme[themeValue].backgroundColor,
+        marginTop: Platform.OS === 'ios' ? 20 : 0
     },
 }))
