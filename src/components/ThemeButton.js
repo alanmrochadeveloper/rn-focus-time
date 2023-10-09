@@ -3,6 +3,7 @@ import React, {useContext} from "react";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {ThemeContext} from "../context/theme";
 import {theme} from "../themes";
+import {spacing} from "../utils/size";
 
 export const ThemeButton = () => {
     const {themeValue, setTheme} = useContext(ThemeContext);
@@ -23,6 +24,6 @@ const styles = StyleSheet.create((themeValue = "dark") => ({
         justifyContent: "center",
         flexDirection: "row",
         backgroundColor: theme[themeValue].backgroundColor,
-        marginTop: Platform.OS === 'ios' ? 20 : 0
+        marginTop: Platform.OS === 'ios' ? spacing.lg : 0
     },
 }))
