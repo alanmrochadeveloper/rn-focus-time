@@ -8,6 +8,9 @@ node_modules/
 dist/
 web-build/
 
+#react buddy preview
+src/dev
+
 # Native
 *.orig.*
 *.jks
