@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, Vibration, View } from 'react-native'
+import { ProgressBar } from 'react-native-paper'
 import { Countdown } from './CountDown'
 import { useContext, useState } from 'react'
 import { ThemeContext } from '../context/theme'
@@ -8,11 +9,25 @@ import { spacing } from '../utils/size'
 
 export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
     const [isPaused, setIsPaused] = useState(true)
+    const [progress, setProgress] = useState(1)
+    const [minutes, setMinutes] = useState(1)
+
     const { themeValue } = useContext(ThemeContext)
+    const ONE_SECOND_IN_MS =
+        1000
+
+    const PATTERN = [
+        1 * ONE_SECOND_IN_MS,
+        1 * ONE_SECOND_IN_MS,
+        1 * ONE_SECOND_IN_MS,
+        1 * ONE_SECOND_IN_MS,
+        1 * ONE_SECOND_IN_MS,
+    ]
+
     return <View style={styles(themeValue).container}>
         <View style={styles(themeValue).countdown}>
-            <Countdown isPaused={isPaused} onProgress={() => {
-            }} onEnd={() => {
+            <Countdown isPaused={isPaused} onProgress={setProgress} minutes={minutes} onEnd={() => {
+                Vibration.vibrate(PATTERN)
             }} />
             <View style={{ paddingTop: spacing.xxl }}>
                 <Text style={styles(themeValue).title}>
@@ -22,6 +37,9 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
                     {focusSubject}
                 </Text>
             </View>
+        </View>
+        <View style={{ paddingTop: spacing.sm }}>
+            <ProgressBar progress={progress} color={'indigo'} />
         </View>
         <View style={styles(themeValue).buttonWrapper}>
             <RoundedButton title={isPaused ? 'start' : 'pause'} onPress={() => setIsPaused((prev) => !prev)} />
