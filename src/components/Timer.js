@@ -1,8 +1,10 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { Countdown } from './CountDown'
 import { useContext, useState } from 'react'
 import { ThemeContext } from '../context/theme'
 import { RoundedButton } from './RoundedButton'
+import { theme } from '../themes'
+import { spacing } from '../utils/size'
 
 export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
     const [isPaused, setIsPaused] = useState(true)
@@ -10,7 +12,16 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
     return <View style={styles(themeValue).container}>
         <View style={styles(themeValue).countdown}>
             <Countdown isPaused={isPaused} onProgress={() => {
+            }} onEnd={() => {
             }} />
+            <View style={{ paddingTop: spacing.xxl }}>
+                <Text style={styles(themeValue).title}>
+                    Focusing on:
+                </Text>
+                <Text style={styles(themeValue).task}>
+                    {focusSubject}
+                </Text>
+            </View>
         </View>
         <View style={styles(themeValue).buttonWrapper}>
             <RoundedButton title={isPaused ? 'start' : 'pause'} onPress={() => setIsPaused((prev) => !prev)} />
@@ -32,5 +43,14 @@ const styles = StyleSheet.create((themeValue = 'dark') => ({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    title: {
+        color: theme[themeValue].text,
+        fontWeight: theme.bold,
+        textAlign: 'center',
+    },
+    task: {
+        color: theme[themeValue].text,
+        textAlign: 'center',
     },
 }))

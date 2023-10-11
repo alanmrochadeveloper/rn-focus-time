@@ -2,6 +2,7 @@ const white = '#f3fefe'
 const black = '#0e0e0e'
 export const theme = {
     inputBg: '#fefefe',
+    bold: 'bold',
     dark: {
         white: white,
         text: white,
