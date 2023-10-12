@@ -23,7 +23,7 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
     useKeepAwake()
     const [isPaused, setIsPaused] = useState(true)
     const [progress, setProgress] = useState(1)
-    const [minutes, setMinutes] = useState(1)
+    const [minutes, setMinutes] = useState(0.1)
 
     const { themeValue } = useContext(ThemeContext)
     const onHandleEnd = (reset) => {
@@ -31,6 +31,7 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
         setProgress(1)
         setIsPaused(true)
         reset()
+        onTimerEnd(focusSubject)
     }
 
     return <View style={styles(themeValue).container}>
@@ -56,6 +57,7 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
         </View>
         <View style={styles(themeValue).buttonWrapper2}>
             <RoundedButton title={'-'} size={60} onPress={() => setMinutes(prev => prev < 2 ? prev : prev - 1)} />
+            <RoundedButton title={'<'} size={60} onPress={() => clearSubject()} />
             <RoundedButton title={'+'} size={60} onPress={() => setMinutes(prev => prev > 58 ? 59.99 : prev + 1)} />
         </View>
     </View>
